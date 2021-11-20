@@ -73,9 +73,9 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.gospl.yaml)")
 
 	rootCmd.PersistentFlags().String("url", "https://webservices.nbs.rs", "Webservice url")
-	rootCmd.PersistentFlags().StringP("username", "u", "", "Authenticate with username")
-	rootCmd.PersistentFlags().StringP("password", "p", "", "Authenticate with password")
-	rootCmd.PersistentFlags().StringP("licence", "l", "", "Licence id")
+	rootCmd.PersistentFlags().String("username", "", "Authenticate with username")
+	rootCmd.PersistentFlags().String("password", "", "Authenticate with password")
+	rootCmd.PersistentFlags().String("licence", "", "Licence id")
 	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "Dump request and response")
 
 	bindableFlags := []string{"url", "username", "password", "licence"}
