@@ -100,6 +100,10 @@ func (h *handler) exchangeRateByCurrency(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	if data == nil {
+		data = GetExchangeRateByCurrency.ExchangeRateDataSetExchangeRates{}
+	}
+
 	rest.Marshalled(w, &data, http.StatusOK)
 
 }
