@@ -56,6 +56,7 @@ func New(port int, baseUrl, username, password, licenceId string) *Server {
 	r.HandleFunc("/core/bank", handler.bankHandler)
 	r.HandleFunc("/core/bank/status", handler.bankStatusHandler)
 	r.HandleFunc("/core/bank/type", handler.bankTypeHandler)
+	r.HandleFunc("/core/currency", handler.currencyHandler)
 	r.HandleFunc("/exchange/list-type", handler.exchangeRateListType)
 	r.HandleFunc("/exchange/current", handler.currentExchangeRate)
 	r.HandleFunc("/exchange/rsd-eur/current", handler.currentExchangeRateRsdEur)

@@ -16,9 +16,12 @@ limitations under the License.
 package cmd
 
 import (
+	"strconv"
+
 	"gospl/nbs/core/GetBank"
 	"gospl/nbs/core/GetBankStatus"
 	"gospl/nbs/core/GetBankType"
+	"gospl/nbs/core/GetCurrency"
 
 	"github.com/spf13/cobra"
 )
@@ -105,14 +108,46 @@ var coreBankTypeCmd = &cobra.Command{
 	},
 }
 
+var coreCurrencyCmd = &cobra.Command{
+	Use:                   "currency",
+	Aliases:               []string{"c"},
+	Short:                 "Get existing currencies",
+	DisableFlagsInUseLine: true,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		request := &GetCurrency.Request{
+			CurrencyID:           cmd.Flag("currency-id").Value.String(),
+			CurrencyCodeAlfaChar: cmd.Flag("currency-code-alpha").Value.String(),
+		}
+		if v := cmd.Flag("currency-code").Value.String(); v != "" {
+			currencyCode, err := strconv.Atoi(v)
+			if err != nil {
+				return err
+			}
+			request.CurrencyCode = currencyCode
+		}
+
+		data, err := client.GetCurrency(request)
+		if err != nil {
+			return err
+		}
+		currentData = data
+		return nil
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(coreCmd)
 	coreCmd.AddCommand(coreBankCmd)
 	coreBankCmd.AddCommand(coreBankStatusCmd)
 	coreBankCmd.AddCommand(coreBankTypeCmd)
+	coreCmd.AddCommand(coreCurrencyCmd)
 
 	coreBankCmd.Flags().StringP("id", "i", "", "Bank ID")
 	coreBankCmd.Flags().IntP("bank-code", "c", 0, "Bank code")
 	coreBankCmd.Flags().IntP("national-id", "n", 0, "Bank national ID number")
 	coreCmd.PersistentFlags().String("out-json", "", "Write results to JSON file")
+
+	coreCurrencyCmd.Flags().StringP("currency-id", "i", "", "Currency ID")
+	coreCurrencyCmd.Flags().IntP("currency-code", "c", 0, "Currency code")
+	coreCurrencyCmd.Flags().StringP("currency-code-alpha", "a", "", "Currency code alpha (3 chars)")
 }
