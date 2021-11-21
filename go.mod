@@ -3,7 +3,10 @@ module gospl
 go 1.17
 
 require (
+	github.com/edermanoel94/rest-go v1.0.0
+	github.com/gorilla/mux v1.8.0
 	github.com/gosuri/uitable v0.0.4
+	github.com/kardianos/service v1.2.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pkg/errors v0.8.1
 	github.com/spf13/cobra v1.2.1
