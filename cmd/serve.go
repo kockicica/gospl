@@ -16,6 +16,7 @@ limitations under the License.
 package cmd
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
@@ -30,20 +31,14 @@ import (
 )
 
 var serviceLogger service.Logger
+var createdService service.Service
+var serverPort int
 
 const (
 	serviceName        = "NBSProxy"
 	serviceDisplayName = "NBS proxy"
 	serviceDescription = "NBS proxy service"
 )
-
-//type program struct {
-//	service  service.Service
-//	server   *http.Server
-//	listener net.Listener
-//	exit     chan os.Signal
-//	port     int
-//}
 
 type serverWrapper struct {
 	service service.Service
@@ -97,78 +92,15 @@ func (w *serverWrapper) Stop(s service.Service) error {
 	return nil
 }
 
-//func (p *program) Start(s service.Service) error {
-//	var err error
-//
-//	if serviceLogger == nil {
-//		var err error
-//		serviceLogger, err = s.Logger(nil)
-//		if err != nil {
-//			return err
-//		}
-//	}
-//
-//	_ = serviceLogger.Info("Starting service: " + s.String())
-//
-//	p.exit = make(chan os.Signal)
-//	p.service = s
-//	p.listener, err = net.Listen("tcp", fmt.Sprintf(":%d", p.port))
-//	if err != nil {
-//		return err
-//	}
-//
-//	http.DefaultServeMux.HandleFunc("/test", func(writer http.ResponseWriter, request *http.Request) {
-//		writer.WriteHeader(http.StatusOK)
-//		_, err := strings.NewReader("dadad").WriteTo(writer)
-//		if err != nil {
-//			return
-//		}
-//	})
-//	p.server = &http.Server{Handler: http.DefaultServeMux}
-//
-//	go p.run()
-//
-//	_ = serviceLogger.Info("Started service: " + s.String() + fmt.Sprintf(" listening on port:%d", p.port))
-//	return nil
-//}
-//
-//func (p *program) Stop(s service.Service) error {
-//	_ = serviceLogger.Info("Stopping service: " + s.String())
-//	//err := p.server.Close()
-//	err := p.server.Shutdown(context.Background())
-//	if err != nil {
-//		return err
-//	}
-//	close(p.exit)
-//	_ = serviceLogger.Info("Stopped service: " + s.String())
-//	return nil
-//}
-//
-//func (p *program) run() {
-//	signal.Notify(p.exit, os.Interrupt, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT)
-//
-//	go func() {
-//		err := p.server.Serve(p.listener)
-//		if err == http.ErrServerClosed {
-//			_ = serviceLogger.Error(err)
-//		}
-//	}()
-//
-//	<-p.exit
-//}
-
 // serveCmd represents the serve command
 var serveCmd = &cobra.Command{
 	Use:   "serve",
-	Short: "Run NBS web services proxy",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	RunE: func(cmd *cobra.Command, args []string) error {
-		port, err := cmd.Flags().GetInt("port")
+	Short: "Run NBS web services proxy server",
+	Long:  ``,
+	Args:  cobra.NoArgs,
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		var err error
+		serverPort, err = cmd.Flags().GetInt("port")
 		if err != nil {
 			return err
 		}
@@ -179,54 +111,152 @@ to quickly create a Cobra application.`,
 		licence := viper.GetString("licence")
 
 		runner := &serverWrapper{}
-		service, err := service.New(runner, &service.Config{
+
+		runner.server = server.New(serverPort, baseUrl, username, password, licence)
+
+		createdService, err = service.New(runner, &service.Config{
 			Name:        serviceName,
 			DisplayName: serviceDisplayName,
 			Description: serviceDescription,
+			Arguments: []string{
+				"--url", baseUrl,
+				"--username", username,
+				"--password", password,
+				"--licence", licence,
+				"serve",
+				"--port", fmt.Sprintf("%d", serverPort),
+			},
 		})
-		serviceLogger, err = service.Logger(nil)
 		if err != nil {
 			return err
 		}
-		runner.server = server.New(port, baseUrl, username, password, licence)
+		serviceLogger, err = createdService.Logger(nil)
+		if err != nil {
+			return err
+		}
+		return nil
+	},
+	RunE: func(cmd *cobra.Command, args []string) error {
 
+		serviceLogger.Infof("Running server on port: %d", serverPort)
+
+		err := createdService.Run()
 		if err != nil {
 			return err
 		}
 
-		serviceLogger.Infof("Running server on port: %d", port)
+		return nil
+	},
+}
 
-		err = service.Run()
+var serviceInstallCmd = &cobra.Command{
+	Use:     "install",
+	Aliases: []string{"i"},
+	Short:   "Install server as system service",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("Installing service")
+		user := cmd.Flag("user").Value.String()
+		if service.Platform() == "windows-service" {
+			user = "Nt Authority\\Network service"
+		}
+		fmt.Println("User:", user)
+		err := service.Control(createdService, "install")
 		if err != nil {
 			return err
 		}
+		fmt.Println("Service installed")
+		return nil
+	},
+}
 
-		//runner := &program{
-		//	port: port,
-		//}
-		//
-		//service, err := service.New(runner, &service.Config{
-		//	Name:        serviceName,
-		//	DisplayName: serviceDisplayName,
-		//	Description: serviceDescription,
-		//})
-		//
-		//if err != nil {
-		//	return err
-		//}
-		//
-		//err = service.Run()
-		//if err != nil {
-		//	return err
-		//}
+var serviceUninstallCmd = &cobra.Command{
+	Use:     "uninstall",
+	Aliases: []string{"u"},
+	Short:   "Uninstall server as system service",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("Uninstalling service")
+		err := service.Control(createdService, "uninstall")
+		if err != nil {
+			return err
+		}
+		fmt.Println("Service uninstalled")
+		return nil
+	},
+}
 
+var serviceStartCmd = &cobra.Command{
+	Use:   "start",
+	Short: "Start server system service",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("Starting service")
+		err := service.Control(createdService, "start")
+		if err != nil {
+			return err
+		}
+		fmt.Println("Service started")
+		return nil
+	},
+}
+
+var serviceStopCmd = &cobra.Command{
+	Use:   "stop",
+	Short: "Stop server system service",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("Stopping service")
+		err := service.Control(createdService, "stop")
+		if err != nil {
+			return err
+		}
+		fmt.Println("Service stopped")
+		return nil
+	},
+}
+
+var serviceRestartCmd = &cobra.Command{
+	Use:   "restart",
+	Short: "Restart server system service",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		fmt.Println("Restarting service")
+		err := service.Control(createdService, "restart")
+		if err != nil {
+			return err
+		}
+		fmt.Println("Service restarted")
+		return nil
+	},
+}
+
+var serviceStatusCmd = &cobra.Command{
+	Use:   "status",
+	Short: "Get server system service status",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		status, err := createdService.Status()
+		if err != nil {
+			return err
+		}
+		switch status {
+		case service.StatusRunning:
+			fmt.Println("Service is running")
+		case service.StatusStopped:
+			fmt.Println("Service is stopped")
+		case service.StatusUnknown:
+			fmt.Println("Service status is unknown, or service is not installed")
+		}
 		return nil
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(serveCmd)
+	serveCmd.AddCommand(serviceInstallCmd)
+	serveCmd.AddCommand(serviceUninstallCmd)
+	serveCmd.AddCommand(serviceStartCmd)
+	serveCmd.AddCommand(serviceStopCmd)
+	serveCmd.AddCommand(serviceRestartCmd)
+	serveCmd.AddCommand(serviceStatusCmd)
 
-	serveCmd.Flags().IntP("port", "p", 31100, "Port server will listen at")
+	serveCmd.PersistentFlags().IntP("port", "p", 31100, "Port server will listen at")
+
+	serviceInstallCmd.Flags().String("user", "", "User service will run as")
 
 }
