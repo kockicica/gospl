@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
@@ -50,7 +49,6 @@ type serverWrapper struct {
 	service service.Service
 	server  *server.Server
 	exit    chan os.Signal
-	logger  service.Logger
 }
 
 func (w *serverWrapper) Start(s service.Service) error {
@@ -59,15 +57,14 @@ func (w *serverWrapper) Start(s service.Service) error {
 	w.exit = make(chan os.Signal)
 	w.service = s
 
-	w.logger, err = s.Logger(nil)
 	if err != nil {
 		return err
 	}
-	_ = w.logger.Info("Starting service:" + s.String())
+	_ = serviceLogger.Info("Starting service:" + s.String())
 
 	go w.run()
 
-	_ = w.logger.Info("Started service:" + s.String())
+	_ = serviceLogger.Info("Started service:" + s.String())
 
 	return nil
 }
@@ -78,9 +75,9 @@ func (w *serverWrapper) run() {
 	go func() {
 		err := w.server.Start()
 		if err != http.ErrServerClosed {
-			_ = w.logger.Error(err)
+			_ = serviceLogger.Error(err)
 		} else {
-			_ = w.logger.Info("Server closed")
+			_ = serviceLogger.Info("Server closed")
 		}
 	}()
 
@@ -88,14 +85,14 @@ func (w *serverWrapper) run() {
 }
 
 func (w *serverWrapper) Stop(s service.Service) error {
-	_ = w.logger.Info("Stopping service: " + s.String())
+	_ = serviceLogger.Info("Stopping service: " + s.String())
 	err := w.server.Stop()
 	if err != nil {
 		return err
 	}
 
 	close(w.exit)
-	_ = w.logger.Info("Service: " + s.String() + " stopped")
+	_ = serviceLogger.Info("Service: " + s.String() + " stopped")
 
 	return nil
 }
@@ -175,26 +172,29 @@ to quickly create a Cobra application.`,
 		if err != nil {
 			return err
 		}
-		fmt.Printf("serve called, port:%d\n", port)
 
 		baseUrl := viper.GetString("url")
 		username := viper.GetString("username")
 		password := viper.GetString("password")
 		licence := viper.GetString("licence")
-		srv := server.New(port, baseUrl, username, password, licence)
 
-		runner := &serverWrapper{
-			server: srv,
-		}
+		runner := &serverWrapper{}
 		service, err := service.New(runner, &service.Config{
 			Name:        serviceName,
 			DisplayName: serviceDisplayName,
 			Description: serviceDescription,
 		})
+		serviceLogger, err = service.Logger(nil)
+		if err != nil {
+			return err
+		}
+		runner.server = server.New(port, baseUrl, username, password, licence)
 
 		if err != nil {
 			return err
 		}
+
+		serviceLogger.Infof("Running server on port: %d", port)
 
 		err = service.Run()
 		if err != nil {

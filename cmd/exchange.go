@@ -25,11 +25,19 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	listTypeFlagName     = "list-type"
+	currencyCodeFlagName = "currency-code"
+	dateFromFlagName     = "date-from"
+	dateToFlagName       = "date-to"
+)
+
 // exchangeCmd represents the exchange command
 var exchangeCmd = &cobra.Command{
-	Use:   "exchange",
-	Short: "Exchange rate query commands",
-	Long:  `Commands used for querying exchange rate data`,
+	Use:     "exchange",
+	Aliases: []string{"e", "exc"},
+	Short:   "Exchange rate query commands",
+	Long:    `Commands used for querying exchange rate data`,
 	PersistentPostRunE: func(cmd *cobra.Command, args []string) error {
 		if currentData != nil {
 			outJson := cmd.Flag("out-json").Value.String()
@@ -47,7 +55,7 @@ var exchangeCmd = &cobra.Command{
 }
 
 var currentRsdEurCmd = &cobra.Command{
-	Use:   "current-rsd-eur",
+	Use:   "current-rsd",
 	Short: "Get current RSD to EUR exchange rate",
 	Args:  cobra.NoArgs,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -72,24 +80,24 @@ var exchangeRateByCurrencyCmd = &cobra.Command{
 	Get exchange rates for GBP (currency code: 826), exchange list type 1 (see help for 'list-type' subcommand), 
 date range from Nov. 1st to Nov. 15th, 2021:
 
-gospl exchange by-currency --currency-code 826 --list-type-id 1  --date-from 20211101 --date-to 20211115
+gospl exchange by-currency --currency-code 826 --list-type 1  --date-from 20211101 --date-to 20211115
 
 `,
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		query := GetExchangeRateByCurrency.Request{}
-		listTypeId, err := cmd.Flags().GetInt("list-type-id")
+		listTypeId, err := cmd.Flags().GetInt(listTypeFlagName)
 		if err != nil {
 			return err
 		}
 		query.ExchangeRateListTypeID = listTypeId
-		currencyCode, err := cmd.Flags().GetInt("currency-code")
+		currencyCode, err := cmd.Flags().GetInt(currencyCodeFlagName)
 		if err != nil {
 			return err
 		}
 		query.CurrencyCode = currencyCode
-		query.DateFrom = cmd.Flag("date-from").Value.String()
-		query.DateTo = cmd.Flag("date-to").Value.String()
+		query.DateFrom = cmd.Flag(dateFromFlagName).Value.String()
+		query.DateTo = cmd.Flag(dateToFlagName).Value.String()
 
 		data, err := client.GetExchangeRateByCurrency(&query)
 		if err != nil {
@@ -101,7 +109,7 @@ gospl exchange by-currency --currency-code 826 --list-type-id 1  --date-from 202
 }
 
 var exchangeRateCurrentRateCmd = &cobra.Command{
-	Use:   "current-rate <exchangeListTypeID>",
+	Use:   "current <exchangeListTypeID>",
 	Short: "Get current exchange rates",
 	Long: `Get current exchange rates for specific exchange list type.
 Available exchange list types may be queried using 'list-types' command 
@@ -126,8 +134,8 @@ Available exchange list types may be queried using 'list-types' command
 }
 
 var exchangeRateListTypeCmd = &cobra.Command{
-	Use:     "list-types",
-	Aliases: []string{"lt"},
+	Use:     "list-type",
+	Aliases: []string{"lt", "list-types"},
 	Short:   "Get exchange rate list types",
 	Args:    cobra.MaximumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -158,9 +166,9 @@ func init() {
 	exchangeCmd.AddCommand(exchangeRateCurrentRateCmd)
 	exchangeCmd.AddCommand(exchangeRateListTypeCmd)
 
-	exchangeRateByCurrencyCmd.Flags().Int("list-type-id", 1, "List type id")
-	exchangeRateByCurrencyCmd.Flags().Int("currency-code", 978, "Currency code")
-	exchangeRateByCurrencyCmd.Flags().String("date-from", "", "From date (format YYYYMMDD)")
-	exchangeRateByCurrencyCmd.Flags().String("date-to", "", "From date format(YYYYMMDD)")
+	exchangeRateByCurrencyCmd.Flags().Int(listTypeFlagName, 1, "List type id")
+	exchangeRateByCurrencyCmd.Flags().Int(currencyCodeFlagName, 978, "Currency code")
+	exchangeRateByCurrencyCmd.Flags().String(dateFromFlagName, "", "From date (format YYYYMMDD)")
+	exchangeRateByCurrencyCmd.Flags().String(dateToFlagName, "", "From date format(YYYYMMDD)")
 
 }
