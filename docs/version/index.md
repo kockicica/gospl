@@ -1,5 +1,6 @@
 ---
 title: version
+parent: gospl
 ---
 ## gospl version
 
