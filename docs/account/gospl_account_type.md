@@ -1,6 +1,8 @@
 ---
 title: account type
 parent: account
+grand_parent: gospl
+
 ---
 ## gospl account type
 

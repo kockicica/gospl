@@ -1,6 +1,7 @@
 ---
 title: account status
 parent: account
+grand_parent: gospl
 ---
 ## gospl account status
 
