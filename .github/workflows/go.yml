@@ -3,6 +3,7 @@ name: Go
 on:
   push:
     branches: [ main ]
+    tags: [ * ]
   pull_request:
     branches: [ main ]
 
@@ -21,10 +22,14 @@ jobs:
       - name: Chmod
         run: chmod +x ./build.sh
 
+      - name: Find tag
+        id: tagger
+        uses: jimschubert/query-tag-action@v1
+
       - name: Build
         run: ./build.sh gospl
         env:
-          CI_COMMIT_TAG: 0.1-beta.1
+          CI_COMMIT_TAG: {{steps.tagger.outputs.tag}}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
