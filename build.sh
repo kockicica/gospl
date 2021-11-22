@@ -50,5 +50,7 @@ for platform in "${platforms[@]}"; do
 
   if [ $GOOS = "windows" ]; then
     zip -m -j ./$ARTIFACTS_DIR/$archive_name ./$ARTIFACTS_DIR/$output_name
+  else
+    tar -zcf ./$ARTIFACTS_DIR/$archive_name ./$ARTIFACTS_DIR/$output_name
   fi
 done
