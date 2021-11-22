@@ -26,11 +26,13 @@ for platform in "${platforms[@]}"; do
   platform_split=(${platform//\// })
   GOOS=${platform_split[0]}
   GOARCH=${platform_split[1]}
-  output_name=$package_name'-'$GOOS'-'$GOARCH
-  archive_name=$package_name'-'$GOOS'-'$GOARCH.tgz
+  output_name=$package_name
+  archive_name=$package_name'-'$GOOS'-'$GOARCH'-'$VERSION
   if [ $GOOS = "windows" ]; then
     output_name+='.exe'
-    archive_name=$package_name'-'$GOOS'-'$GOARCH.zip
+    archive_name+='.zip'
+  else 
+    archive_name+='.tgz'
   fi
 
   # env GOOS=$GOOS GOARCH=$GOARCH go build -o $output_name $package
@@ -51,6 +53,7 @@ for platform in "${platforms[@]}"; do
   if [ $GOOS = "windows" ]; then
     zip -m -j ./$ARTIFACTS_DIR/$archive_name ./$ARTIFACTS_DIR/$output_name
   else
-    tar -zcf ./$ARTIFACTS_DIR/$archive_name ./$ARTIFACTS_DIR/$output_name
+    tar zcf ./$ARTIFACTS_DIR/$archive_name -C ./$ARTIFACTS_DIR $output_name
+    rm ./$ARTIFACTS_DIR/$output_name
   fi
 done
