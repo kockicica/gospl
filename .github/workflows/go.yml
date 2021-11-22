@@ -22,4 +22,9 @@ jobs:
       run: chmod +x ./build.sh
     - name: Build
       run: ./build.sh gospl
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: binaries
+        path: artifacts
 
