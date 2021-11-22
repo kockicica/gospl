@@ -1,3 +1,6 @@
+---
+has_children: true
+---
 ## gospl account
 
 Get account info
@@ -48,7 +51,7 @@ gospl account --name somename
 
 ### SEE ALSO
 
-* [gospl](gospl.md)	 - NBS web service command line client
+* [gospl](../gospl.md)	 - NBS web service command line client
 * [gospl account status](gospl_account_status.md)	 - Get existing account statuses
 * [gospl account type](gospl_account_type.md)	 - Get existing account types
 

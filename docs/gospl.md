@@ -16,7 +16,7 @@ NBS web service command line client
 
 ### SEE ALSO
 
-* [gospl account](gospl_account.md)	 - Get account info
+* [gospl account](account/index.md)	 - Get account info
 * [gospl completion](gospl_completion.md)	 - generate the autocompletion script for the specified shell
 * [gospl core](gospl_core.md)	 - Query nbs core services
 * [gospl debtor](gospl_debtor.md)	 - A brief description of your command
