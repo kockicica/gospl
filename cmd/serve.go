@@ -22,7 +22,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/kockicica/gospl/server"
+	"gospl/server"
 
 	"github.com/kardianos/service"
 	_ "github.com/kardianos/service"

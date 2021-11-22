@@ -5,10 +5,10 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/kockicica/gospl/nbs/core/GetBank"
-	"github.com/kockicica/gospl/nbs/core/GetBankStatus"
-	"github.com/kockicica/gospl/nbs/core/GetBankType"
-	"github.com/kockicica/gospl/nbs/core/GetCurrency"
+	"gospl/nbs/core/GetBank"
+	"gospl/nbs/core/GetBankStatus"
+	"gospl/nbs/core/GetBankType"
+	"gospl/nbs/core/GetCurrency"
 
 	"github.com/edermanoel94/rest-go"
 )

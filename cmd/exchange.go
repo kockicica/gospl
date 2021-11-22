@@ -18,9 +18,9 @@ package cmd
 import (
 	"strconv"
 
-	"github.com/kockicica/gospl/nbs/exchange/GetCurrentExchangeRate"
-	"github.com/kockicica/gospl/nbs/exchange/GetExchangeRateByCurrency"
-	"github.com/kockicica/gospl/nbs/exchange/GetExchangeRateListType"
+	"gospl/nbs/exchange/GetCurrentExchangeRate"
+	"gospl/nbs/exchange/GetExchangeRateByCurrency"
+	"gospl/nbs/exchange/GetExchangeRateListType"
 
 	"github.com/spf13/cobra"
 )

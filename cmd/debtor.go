@@ -16,7 +16,7 @@ limitations under the License.
 package cmd
 
 import (
-	"github.com/kockicica/gospl/nbs/debtor/GetDebtor"
+	"gospl/nbs/debtor/GetDebtor"
 
 	"github.com/spf13/cobra"
 )

@@ -1,9 +1,9 @@
 package nbs
 
 import (
-	"github.com/kockicica/gospl/nbs/account/GetCompanyAccount"
-	"github.com/kockicica/gospl/nbs/account/GetCompanyAccountStatus"
-	"github.com/kockicica/gospl/nbs/account/GetCompanyAccountType"
+	"gospl/nbs/account/GetCompanyAccount"
+	"gospl/nbs/account/GetCompanyAccountStatus"
+	"gospl/nbs/account/GetCompanyAccountType"
 )
 
 func (c *Client) GetCompanyAccount(request *GetCompanyAccount.Request) (GetCompanyAccount.CompanyAccounts, error) {
