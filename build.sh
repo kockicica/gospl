@@ -2,6 +2,15 @@
 
 package=$1
 
+VERSION=$CI_COMMIT_TAG
+BUILDTIME=$(date +"%Y.%m.%d.%H%M%S")
+REVISION=$(git log --pretty=format:"%h" -n 1)
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [ -z "$VERSION" ]; then
+    VERSION=$BRANCH'-'$REVISION
+fi
+
 if [[ -z "$package" ]]; then
   echo "Usage: $0 <package-name>"
   exit 1
@@ -22,7 +31,14 @@ for platform in "${platforms[@]}"; do
   fi
 
   # env GOOS=$GOOS GOARCH=$GOARCH go build -o $output_name $package
-  env GOOS=$GOOS GOARCH=$GOARCH go build -ldflags "-extldflags '-static'" -o ./artifacts/$output_name $package_name
+  env GOOS=$GOOS GOARCH=$GOARCH go build \
+  -ldflags "-extldflags '-static' \
+  -X gospl/cmd.VERSION=$VERSION \
+  -X gospl/cmd.BUILT=$BUILDTIME \
+  -X gospl/cmd.REVISION=$REVISION \
+  -X gospl/cmd.BRANCH=$BRANCH \
+  " \
+  -o ./artifacts/$output_name $package_name
   if [ $? -ne 0 ]; then
     echo 'Error occured'
     exit 1
