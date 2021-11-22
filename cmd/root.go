@@ -35,10 +35,11 @@ var (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "gospl",
-	Short: "NBS web service command line client",
-	Long:  ``,
-
+	Use:           "gospl",
+	Short:         "NBS web service command line client",
+	Long:          ``,
+	SilenceUsage:  true,
+	SilenceErrors: true,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 
 		client = nbs.NewClient(

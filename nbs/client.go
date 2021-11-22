@@ -107,12 +107,20 @@ func (c *Client) soapCall(serviceUrl, action string, data interface{}) ([]byte, 
 	}
 
 	if response.StatusCode != http.StatusOK {
-		soapFault, err := ioutil.ReadAll(response.Body)
+		faultData, err := ioutil.ReadAll(response.Body)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to read SOAP response body")
 		}
-		msg := fmt.Sprintf("HTTP status code: %d, SOAP fault: \n%#v", response.StatusCode, string(soapFault))
-		return nil, errors.New(msg)
+		soapFault := Fault{}
+
+		rspEnvelope := Envelope{}
+		rspEnvelope.Body = Body{Content: &soapFault}
+
+		err = xml.Unmarshal(faultData, &rspEnvelope)
+		if err != nil {
+			return nil, err
+		}
+		return nil, fmt.Errorf("HTTP status code: %d\n%s\n", response.StatusCode, soapFault.Error())
 	}
 	defer response.Body.Close()
 

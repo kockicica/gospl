@@ -2,6 +2,8 @@ package nbs
 
 import (
 	"encoding/xml"
+
+	"github.com/gosuri/uitable"
 )
 
 type soapRQ struct {
@@ -42,15 +44,31 @@ type Body struct {
 }
 
 type Fault struct {
-	XMLName xml.Name `xml:"http://schemas.xmlsoap.org/soap/envelope/ Fault"`
-	Code    string   `xml:"faultcode,omitempty"`
-	String  string   `xml:"faultstring,omitempty"`
-	Actor   string   `xml:"faultactor,omitempty"`
-	Detail  string   `xml:"detail,omitempty"`
+	//XMLName xml.Name `xml:"http://schemas.xmlsoap.org/soap/envelope/ Fault"`
+	XMLName xml.Name `xml:"Fault"`
+	Code    string   `xml:"Code>Value,omitempty"`
+	Reason  string   `xml:"Reason>Text,omitempty"`
+	Node    string   `xml:"Node,omitempty"`
+	// Detail  string   `xml:"detail,omitempty"`
+	ErrorInfo ErrorInfo `xml:"detail>ErrorInfo"`
 }
 
-func (f *Fault) Error() string {
-	return f.String
+type ErrorInfo struct {
+	ErrorType    string `xml:"ErrorType"`
+	ErrorCode    int    `xml:"ErrorCode"`
+	ErrorMessage string `xml:"ErrorMessage"`
+}
+
+func (f Fault) Error() string {
+	table := uitable.New()
+	table.Wrap = true
+	table.AddRow("CODE:", f.Code)
+	table.AddRow("REASON:", f.Reason)
+	table.AddRow("NODE:", f.Node)
+	table.AddRow("ERROR TYPE:", f.ErrorInfo.ErrorType)
+	table.AddRow("ERROR CODE:", f.ErrorInfo.ErrorCode)
+	table.AddRow("ERROR MESSAGE:", f.ErrorInfo.ErrorMessage)
+	return table.String()
 }
 
 func (h *Header) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
