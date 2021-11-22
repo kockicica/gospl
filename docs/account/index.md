@@ -1,5 +1,7 @@
 ---
 has_children: true
+title: account
+parent: gospl
 ---
 ## gospl account
 

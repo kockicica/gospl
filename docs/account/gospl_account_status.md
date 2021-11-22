@@ -1,3 +1,7 @@
+---
+title: account status
+parent: account
+---
 ## gospl account status
 
 Get existing account statuses

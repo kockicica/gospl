@@ -1,3 +1,7 @@
+---
+title: account type
+parent: account
+---
 ## gospl account type
 
 Get existing account types
