@@ -1,3 +1,8 @@
+---
+title: serve
+has_children: true
+parent: gospl
+---
 ## gospl serve
 
 Run NBS web services proxy server
@@ -26,7 +31,7 @@ gospl serve [flags]
 
 ### SEE ALSO
 
-* [gospl](gospl.md)	 - NBS web service command line client
+* [gospl](../gospl.md)	 - NBS web service command line client
 * [gospl serve install](gospl_serve_install.md)	 - Install server as system service
 * [gospl serve restart](gospl_serve_restart.md)	 - Restart server system service
 * [gospl serve start](gospl_serve_start.md)	 - Start server system service
