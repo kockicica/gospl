@@ -1,3 +1,8 @@
+---
+title: exchange
+has_children: true
+parent: gospl
+---
 ## gospl exchange
 
 Exchange rate query commands
@@ -26,7 +31,7 @@ Commands used for querying exchange rate data
 
 ### SEE ALSO
 
-* [gospl](gospl.md)	 - NBS web service command line client
+* [gospl](../gospl.md)	 - NBS web service command line client
 * [gospl exchange by-currency](gospl_exchange_by-currency.md)	 - Get exchange rates by currency
 * [gospl exchange current](gospl_exchange_current.md)	 - Get current exchange rates
 * [gospl exchange current-rsd](gospl_exchange_current-rsd.md)	 - Get current RSD to EUR exchange rate
