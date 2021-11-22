@@ -26,6 +26,9 @@ jobs:
       - name: Find tag
         id: tagger
         uses: jimschubert/query-tag-action@v1
+        continue-on-error: true
+        with:
+          commit-ish: 'HEAD'
 
       - name: Build
         run: ./build.sh gospl
