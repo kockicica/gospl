@@ -1,3 +1,7 @@
+---
+title: Home
+---
+
 # GoSpl
 
 GoSpl is command line client / proxy service for NBS webservices
