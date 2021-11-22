@@ -1,6 +1,8 @@
+---
 has_children: true
 title: completion
 parent: gospl
+---
 ## gospl completion
 
 generate the autocompletion script for the specified shell
