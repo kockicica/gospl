@@ -5,9 +5,9 @@ import (
 	"net/url"
 	"strconv"
 
-	"gospl/nbs/account/GetCompanyAccount"
-	"gospl/nbs/account/GetCompanyAccountStatus"
-	"gospl/nbs/account/GetCompanyAccountType"
+	"github.com/kockicica/gospl/nbs/account/GetCompanyAccount"
+	"github.com/kockicica/gospl/nbs/account/GetCompanyAccountStatus"
+	"github.com/kockicica/gospl/nbs/account/GetCompanyAccountType"
 
 	"github.com/edermanoel94/rest-go"
 	"github.com/pkg/errors"

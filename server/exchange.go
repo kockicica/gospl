@@ -5,9 +5,9 @@ import (
 	"net/url"
 	"strconv"
 
-	"gospl/nbs/exchange/GetCurrentExchangeRate"
-	"gospl/nbs/exchange/GetExchangeRateByCurrency"
-	"gospl/nbs/exchange/GetExchangeRateListType"
+	"github.com/kockicica/gospl/nbs/exchange/GetCurrentExchangeRate"
+	"github.com/kockicica/gospl/nbs/exchange/GetExchangeRateByCurrency"
+	"github.com/kockicica/gospl/nbs/exchange/GetExchangeRateListType"
 
 	"github.com/edermanoel94/rest-go"
 )

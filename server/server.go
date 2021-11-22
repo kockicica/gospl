@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"gospl/nbs"
+	"github.com/kockicica/gospl/nbs"
 
 	"github.com/edermanoel94/rest-go"
 	"github.com/gorilla/mux"

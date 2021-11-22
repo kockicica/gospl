@@ -1,7 +1,7 @@
 package nbs
 
 import (
-	"gospl/nbs/debtor/GetDebtor"
+	"github.com/kockicica/gospl/nbs/debtor/GetDebtor"
 )
 
 func (c *Client) GetDebtor(request *GetDebtor.Request) (GetDebtor.Debtors, error) {

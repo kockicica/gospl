@@ -1,10 +1,10 @@
 package nbs
 
 import (
-	"gospl/nbs/exchange/GetCurrentExchangeRate"
-	"gospl/nbs/exchange/GetCurrentExchangeRateRsdEur"
-	"gospl/nbs/exchange/GetExchangeRateByCurrency"
-	"gospl/nbs/exchange/GetExchangeRateListType"
+	"github.com/kockicica/gospl/nbs/exchange/GetCurrentExchangeRate"
+	"github.com/kockicica/gospl/nbs/exchange/GetCurrentExchangeRateRsdEur"
+	"github.com/kockicica/gospl/nbs/exchange/GetExchangeRateByCurrency"
+	"github.com/kockicica/gospl/nbs/exchange/GetExchangeRateListType"
 )
 
 func (c *Client) GetCurrentExchangeRate(request *GetCurrentExchangeRate.Request) (GetCurrentExchangeRate.ExchangeRateDataSetExchangeRateList, error) {

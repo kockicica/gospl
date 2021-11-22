@@ -1,10 +1,10 @@
 package nbs
 
 import (
-	"gospl/nbs/core/GetBank"
-	"gospl/nbs/core/GetBankStatus"
-	"gospl/nbs/core/GetBankType"
-	"gospl/nbs/core/GetCurrency"
+	"github.com/kockicica/gospl/nbs/core/GetBank"
+	"github.com/kockicica/gospl/nbs/core/GetBankStatus"
+	"github.com/kockicica/gospl/nbs/core/GetBankType"
+	"github.com/kockicica/gospl/nbs/core/GetCurrency"
 )
 
 func (c *Client) GetBank(request *GetBank.Request) (GetBank.BankDataSetBanks, error) {

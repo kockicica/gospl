@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"os"
 
-	"gospl/nbs"
+	"github.com/kockicica/gospl/nbs"
 
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"

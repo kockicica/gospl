@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "gospl/cmd"
+import "github.com/kockicica/gospl/cmd"
 
 func main() {
 	cmd.Execute()
