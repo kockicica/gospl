@@ -2,6 +2,7 @@
 
 package=$1
 
+ARTIFACTS_DIR=artifacts
 VERSION=$CI_COMMIT_TAG
 BUILDTIME=$(date +"%Y.%m.%d.%H%M%S")
 REVISION=$(git log --pretty=format:"%h" -n 1)
@@ -26,8 +27,10 @@ for platform in "${platforms[@]}"; do
   GOOS=${platform_split[0]}
   GOARCH=${platform_split[1]}
   output_name=$package_name'-'$GOOS'-'$GOARCH
+  archive_name=$package_name'-'$GOOS'-'$GOARCH.tgz
   if [ $GOOS = "windows" ]; then
     output_name+='.exe'
+    archive_name=$package_name'-'$GOOS'-'$GOARCH.zip
   fi
 
   # env GOOS=$GOOS GOARCH=$GOARCH go build -o $output_name $package
@@ -38,10 +41,14 @@ for platform in "${platforms[@]}"; do
   -X gospl/cmd.REVISION=$REVISION \
   -X gospl/cmd.BRANCH=$BRANCH \
   " \
-  -o ./artifacts/$output_name $package_name
+  -o ./$ARTIFACTS_DIR/$output_name $package_name
   if [ $? -ne 0 ]; then
     echo 'Error occured'
     exit 1
   fi
   echo "Output name: ${output_name}"
+
+  if [ $GOOS = "windows" ]; then
+    zip -m -j ./$ARTIFACTS_DIR/$archive_name ./$ARTIFACTS_DIR/$output_name
+  fi
 done
