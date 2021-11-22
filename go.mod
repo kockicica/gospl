@@ -1,4 +1,4 @@
-module gospl
+module github.com/kockicica/gospl
 
 go 1.17
 
