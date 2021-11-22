@@ -1,3 +1,6 @@
+has_children: true
+title: completion
+parent: gospl
 ## gospl completion
 
 generate the autocompletion script for the specified shell
@@ -28,7 +31,7 @@ See each sub-command's help for details on how to use the generated script.
 
 ### SEE ALSO
 
-* [gospl](gospl.md)	 - NBS web service command line client
+* [gospl](../gospl.md)	 - NBS web service command line client
 * [gospl completion bash](gospl_completion_bash.md)	 - generate the autocompletion script for bash
 * [gospl completion fish](gospl_completion_fish.md)	 - generate the autocompletion script for fish
 * [gospl completion powershell](gospl_completion_powershell.md)	 - generate the autocompletion script for powershell
