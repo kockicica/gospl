@@ -22,7 +22,7 @@ NBS web service command line client
 
 * [gospl account](account/index.md)	 - Get account info
 * [gospl completion](completion/index.md)	 - generate the autocompletion script for the specified shell
-* [gospl core](gospl_core.md)	 - Query nbs core services
+* [gospl core](core/index.md)	 - Query nbs core services
 * [gospl debtor](gospl_debtor.md)	 - A brief description of your command
 * [gospl exchange](gospl_exchange.md)	 - Exchange rate query commands
 * [gospl generate](gospl_generate.md)	 - Generate few things
