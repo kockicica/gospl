@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: ./build.sh gospl
         env:
-          CI_COMMIT_TAG: {{steps.tagger.outputs.tag}}
+          CI_COMMIT_TAG: ${{steps.tagger.outputs.tag}}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
