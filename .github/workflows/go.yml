@@ -11,20 +11,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
 
-    - name: Chmod
-      run: chmod +x ./build.sh
-    - name: Build
-      run: ./build.sh gospl
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: binaries
-        path: artifacts
+      - name: Chmod
+        run: chmod +x ./build.sh
+
+      - name: Build
+        run: ./build.sh gospl
+        env:
+          CI_COMMIT_TAG: 0.1-beta.1
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: binaries
+          path: artifacts
 
