@@ -1,7 +1,8 @@
 ---
-has_children: true
-title: completion
-parent: gospl
+has_children: true  
+title: completion  
+parent: gospl  
+permalink: "/cmd/completion"  
 ---
 ## gospl completion
 
