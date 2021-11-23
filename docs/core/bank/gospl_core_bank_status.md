@@ -1,7 +1,8 @@
 ---
-title: status
-parent: bank
-grand_parent: core
+title: status  
+parent: bank  
+grand_parent: core  
+permalink: "/cmd/core/bank/status"
 ---
 ## gospl core bank status
 

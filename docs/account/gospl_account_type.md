@@ -1,8 +1,8 @@
 ---
-title: account type
-parent: account
-grand_parent: gospl
-
+title: account type  
+parent: account  
+grand_parent: gospl  
+permalink: "/cmd/account/type"
 ---
 ## gospl account type
 

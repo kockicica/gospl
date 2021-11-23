@@ -1,7 +1,8 @@
 ---
-title: fish
-parent: completion
-grand_parent: gospl
+title: fish  
+parent: completion  
+grand_parent: gospl  
+permalink: "/cmd/completion/fish"
 ---
 
 ## gospl completion fish

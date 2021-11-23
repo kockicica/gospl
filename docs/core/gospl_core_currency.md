@@ -1,7 +1,8 @@
 ---
-title: currency
-parent: core
-grand_parent: gospl
+title: currency  
+parent: core  
+grand_parent: gospl  
+permalink: "/cmd/core/currency"
 ---
 ## gospl core currency
 

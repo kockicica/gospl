@@ -1,7 +1,8 @@
 ---
-title: account status
-parent: account
-grand_parent: gospl
+title: account status  
+parent: account  
+grand_parent: gospl  
+permalink: "/cmd/account/status"
 ---
 ## gospl account status
 

@@ -1,7 +1,8 @@
 ---
-title: zsh
-parent: completion
-grand_parent: gospl
+title: zsh  
+parent: completion  
+grand_parent: gospl  
+permalink: "/cmd/completion/zsh"
 ---
 
 ## gospl completion zsh

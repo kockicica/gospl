@@ -1,8 +1,9 @@
 ---
-title: bank
-parent: core
-grand_parent: gospl
-has_children: true
+title: bank  
+parent: core  
+grand_parent: gospl  
+has_children: true  
+permalink: "/cmd/core/bank"
 ---
 ## gospl core bank
 

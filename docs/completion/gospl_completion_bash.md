@@ -1,7 +1,8 @@
 ---
-title: bash
-parent: completion
-grand_parent: gospl
+title: bash  
+parent: completion  
+grand_parent: gospl  
+permalink: "/cmd/completion/bash"
 ---
 
 ## gospl completion bash

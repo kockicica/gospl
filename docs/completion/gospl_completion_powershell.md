@@ -1,7 +1,8 @@
 ---
-title: powershell
-parent: completion
-grand_parent: gospl
+title: powershell  
+parent: completion  
+grand_parent: gospl  
+permalink: "/cmd/completion/powershell"
 ---
 
 ## gospl completion powershell

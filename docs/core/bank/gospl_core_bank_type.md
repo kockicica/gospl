@@ -1,7 +1,8 @@
 ---
-title: type
-parent: bank
-grand_parent: core
+title: type  
+parent: bank  
+grand_parent: core  
+permalink: "/cmd/core/bank/type"
 ---
 ## gospl core bank type
 
