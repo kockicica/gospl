@@ -1,7 +1,8 @@
 ---
-has_children: true
-title: account
-parent: gospl
+has_children: true  
+title: account  
+parent: gospl  
+permalink: "/account"
 ---
 ## gospl account
 
