@@ -1,2 +1,5 @@
 #theme: jekyll-theme-cayman
 remote_theme: pmarsceill/just-the-docs
+aux_links:
+  "gospl on GitHub":
+    - "//github.com/kockicica/gospl
