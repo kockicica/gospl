@@ -70,30 +70,30 @@ Response:
 ```json
 [
   {
-    "bankID": "78bf0dc3-4cdd-49a0-8192-a66688492bca",
-    "bankHistoryID": "64e5fe41-6f2e-4dd1-9684-b45d112442e7",
+    "bankID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "bankHistoryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     "startDate": "2021-11-22T00:00:00+01:00",
     "endDate": "",
-    "bankCode": 370,
-    "nationalIdentificationNumber": 8761132,
+    "bankCode": 999,
+    "nationalIdentificationNumber": 9999999,
     "taxIdentificationNumber": "",
-    "name": "3 BANKA a.d. Novi Sad",
+    "name": "xxxx xxxxxxx xxxxxxxx",
     "logoSmall": "",
     "logoBig": "",
-    "address": "Bulevar oslobođenja 2a",
-    "city": "Novi Sad",
+    "address": "xxxx xxxxxxxxxxxx xxxx",
+    "city": "xxxxxxxx",
     "region": "",
     "state": "",
     "country": "",
-    "postalCode": "21000",
-    "phone": "021/4893-123",
-    "fax": "021/4893-123",
-    "email": "office@obs.co.yu",
-    "webAddress": "www.obs.co.yu",
-    "director": "Vladimir Vukotić",
+    "postalCode": "xxxxx",
+    "phone": "xxxxxxxxxxxx",
+    "fax": "xxxxxxxxxxxx",
+    "email": "xxxxxxxxxxxxxxxx",
+    "webAddress": "xxxxxxxxxxxxx",
+    "director": "xxxxxxxxxxxxxxxx",
     "description": "",
-    "bankTypeID": 1,
-    "bankStatusID": 1
+    "bankTypeID": 9,
+    "bankStatusID": 9
   }
 ]
 ```
