@@ -22,3 +22,7 @@ Get basic help using
 ```shell
 gospl help
 ```
+
+## Documentation
+
+See https://kockicica.github.io/gospl/
