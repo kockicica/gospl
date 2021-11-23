@@ -1,7 +1,8 @@
 ---
-title: serve
-has_children: true
-parent: gospl
+title: serve  
+has_children: true  
+parent: gospl  
+permalink: "/cmd/serve"
 ---
 ## gospl serve
 

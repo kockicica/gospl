@@ -1,7 +1,8 @@
 ---
-title: by-currency
-grand_parent: gospl
-parent: exchange
+title: by-currency  
+grand_parent: gospl  
+parent: exchange  
+permalink: "/cmd/exchange/currency"
 ---
 ## gospl exchange by-currency
 

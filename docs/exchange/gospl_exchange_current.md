@@ -1,7 +1,8 @@
 ---
-title: current
-grand_parent: gospl
-parent: exchange
+title: current  
+grand_parent: gospl  
+parent: exchange  
+permalink: "/cmd/exchange/current"
 ---
 ## gospl exchange current
 

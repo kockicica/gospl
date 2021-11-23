@@ -1,7 +1,8 @@
 ---
-title: current-rsd
-grand_parent: gospl
-parent: exchange
+title: current-rsd  
+grand_parent: gospl  
+parent: exchange  
+permalink: "/cmd/exchange/current-rsd"
 ---
 ## gospl exchange current-rsd
 

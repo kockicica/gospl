@@ -1,7 +1,8 @@
 ---
-title: status
-parent: serve
-grand_parent: gospl
+title: status  
+parent: serve  
+grand_parent: gospl  
+permalink: "/cmd/serve/status"
 ---
 ## gospl serve status
 

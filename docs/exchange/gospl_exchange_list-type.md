@@ -1,7 +1,8 @@
 ---
-title: list-type
-grand_parent: gospl
-parent: exchange
+title: list-type  
+grand_parent: gospl  
+parent: exchange  
+permalink: "/cmd/exchange/list-type"
 ---
 ## gospl exchange list-type
 

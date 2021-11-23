@@ -1,7 +1,8 @@
 ---
-title: start
-parent: serve
-grand_parent: gospl
+title: start  
+parent: serve  
+grand_parent: gospl  
+permalink: "/cmd/serve/start"
 ---
 ## gospl serve start
 

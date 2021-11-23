@@ -1,7 +1,8 @@
 ---
-title: restart
-parent: serve
-grand_parent: gospl
+title: restart  
+parent: serve  
+grand_parent: gospl  
+permalink: "/cmd/serve/restart"
 ---
 ## gospl serve restart
 
