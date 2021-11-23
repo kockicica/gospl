@@ -14,16 +14,6 @@ GoSpl is command line client / proxy service for NBS webservices
 Download archive from [releases page](https://github.com/kockicica/gospl/releases) and unpack it somewhere along the
 path.
 
-## Usage
-
-Get basic help using
-
-```shell
-gospl help
-```
-
-For detailed informations see [CLI usage help](gospl.md)
-
 ## Configuration
 
 To use NBS web services you should have authorization data: username, password and licence id. Those parameters should
@@ -89,3 +79,12 @@ gospl --config /path/to/config.yaml core currency
 ```
 
 
+## Usage
+
+Get basic help using
+
+```shell
+gospl help
+```
+
+For detailed informations see [CLI usage help](gospl.md)
