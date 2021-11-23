@@ -1,7 +1,7 @@
 ---
 title: gospl  
 has_children: true  
-permalik: "/cmd"
+permalink: "/cmd"
 ---
 ## gospl
 
