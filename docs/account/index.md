@@ -2,7 +2,7 @@
 has_children: true  
 title: account  
 parent: gospl  
-permalink: "/account"
+permalink: "/cmd/account"
 ---
 ## gospl account
 

@@ -1,7 +1,8 @@
 ---
-title: exchange
-has_children: true
-parent: gospl
+title: exchange  
+has_children: true  
+parent: gospl  
+permalink: "/cmd/exchange"
 ---
 ## gospl exchange
 
