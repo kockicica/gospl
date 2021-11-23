@@ -1,7 +1,7 @@
 ---
 title: status
-parent: bank
-grand_parent: core
+parent: core
+grand_parent: gospl
 ---
 ## gospl core bank status
 
