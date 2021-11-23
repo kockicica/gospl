@@ -90,6 +90,9 @@ func (h *handler) currencyHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		rest.Error(w, err, http.StatusInternalServerError)
 	} else {
+		if data == nil {
+			data = GetCurrency.Currencies{}
+		}
 		rest.Marshalled(w, &data, http.StatusOK)
 	}
 }
