@@ -1,7 +1,7 @@
 ---
 title: account  
 parent: API  
-permalink: "/account"
+permalink: "/api/account"
 ---
 
 ## Account REST endpoints

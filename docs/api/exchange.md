@@ -1,7 +1,7 @@
 ---
 title: "exchange"  
 parent: API  
-permalink: "/exchange"
+permalink: "/api/exchange"
 ---
 
 ## Exchange REST endpoints

@@ -1,7 +1,7 @@
 ---
 title: "core"  
 parent: API  
-permalink: "/core"
+permalink: "/api/core"
 ---
 
 ## Core REST endpoints
