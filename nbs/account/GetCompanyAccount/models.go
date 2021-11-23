@@ -37,29 +37,30 @@ type CompanyAccounts []CompanyAccount
 
 type CompanyAccount struct {
 	XMLName                        xml.Name `xml:"CompanyAccount" json:"-"`
-	ID                             string   `xml:"id,attr" json:"-"`
-	RowOrder                       string   `xml:"rowOrder,attr" json:"-"`
+	ID                             string   `xml:"ID,attr" json:"-"`
+	RowOrder                       string   `xml:"RowOrder,attr" json:"-"`
 	Account                        string   `xml:"Account" json:"account"`
-	BankCode                       string   `xml:"BankCode" json:"bankCode"`
-	AccountNumber                  string   `xml:"AccountNumber" json:"accountNumber"`
-	ControlNumber                  string   `xml:"ControlNumber" json:"controlNumber"`
+	BankCode                       int      `xml:"BankCode" json:"bankCode"`
+	AccountNumber                  int      `xml:"AccountNumber" json:"accountNumber"`
+	ControlNumber                  int      `xml:"ControlNumber" json:"controlNumber"`
 	CompanyName                    string   `xml:"CompanyName" json:"companyName"`
-	NationalIdentificationNumber   string   `xml:"NationalIdentificationNumber" json:"nationalIdentificationNumber"`
+	NationalIdentificationNumber   int      `xml:"NationalIdentificationNumber" json:"nationalIdentificationNumber"`
 	TaxIdentificationNumber        string   `xml:"TaxIdentificationNumber" json:"taxIdentificationNumber"`
 	Address                        string   `xml:"Address" json:"address"`
 	City                           string   `xml:"City" json:"city"`
-	MunicipalityCode               string   `xml:"MunicipalityCode" json:"municipalityCode"`
-	ActivityCode                   string   `xml:"ActivityCode" json:"activityCode"`
+	MunicipalityCode               int      `xml:"MunicipalityCode" json:"municipalityCode"`
+	ActivityCode                   int      `xml:"ActivityCode" json:"activityCode"`
 	MunicipalityName               string   `xml:"MunicipalityName" json:"municipalityName"`
 	ActivityName                   string   `xml:"ActivityName" json:"activityName"`
 	BankName                       string   `xml:"BankName" json:"bankName"`
-	CompanyAccountStatusID         string   `xml:"CompanyAccountStatusID" json:"companyAccountStatusID"`
-	CompanyAccountBlockadeStatusID string   `xml:"CompanyAccountBlockadeStatusID" json:"companyAccountBlockadeStatusID"`
-	CompanyAccountTypeID           string   `xml:"CompanyAccountTypeID" json:"companyAccountTypeID"`
-	LegalUserTypeID                string   `xml:"LegalUserTypeID" json:"legalUserTypeID"`
+	CompanyAccountStatusID         int      `xml:"CompanyAccountStatusID" json:"companyAccountStatusID"`
+	CompanyAccountBlockadeStatusID int      `xml:"CompanyAccountBlockadeStatusID" json:"companyAccountBlockadeStatusID"`
+	CompanyAccountTypeID           int      `xml:"CompanyAccountTypeID" json:"companyAccountTypeID"`
+	LegalUserTypeID                int      `xml:"LegalUserTypeID" json:"legalUserTypeID"`
 	InitializationDate             string   `xml:"InitializationDate" json:"initializationDate"`
 	ChangeDate                     string   `xml:"ChangeDate" json:"changeDate"`
 	UpdateDate                     string   `xml:"UpdateDate" json:"updateDate"`
+	BankID                         string   `xml:"BankID" json:"bankID"`
 }
 
 func (a CompanyAccounts) WriteOut() {
