@@ -1,6 +1,7 @@
 ---
 title: API  
-has_children: true
+has_children: true  
+permalink: "/api"
 ---
 
 ## gospl proxy
