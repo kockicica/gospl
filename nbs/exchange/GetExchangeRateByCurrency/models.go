@@ -55,8 +55,8 @@ type ExchangeRateDataSetExchangeRate struct {
 	CountryNameSerLat      string   `xml:"CountryNameSerLat" json:"countryNameSerLat"`
 	CountryNameEng         string   `xml:"CountryNameEng" json:"countryNameEng"`
 	Unit                   int      `xml:"Unit" json:"unit"`
-	BuyingRate             *float64 `xml:"BuyingRate" json:"BuyingRate"`
-	MiddleRate             *float64 `xml:"MiddleRate" json:"MiddleRate"`
+	BuyingRate             *float64 `xml:"BuyingRate" json:"buyingRate"`
+	MiddleRate             *float64 `xml:"MiddleRate" json:"middleRate"`
 	SellingRate            *float64 `xml:"SellingRate" json:"sellingRate"`
 	FixingRate             *float64 `xml:"FixingRate" json:"fixingRate"`
 }

@@ -126,8 +126,8 @@ Response:
         "countryNameSerLat": "EMU",
         "countryNameEng": "EMU",
         "unit": 1,
-        "BuyingRate": 100.6092,
-        "MiddleRate": 0,
+        "buyingRate": 100.6092,
+        "middleRate": 0,
         "sellingRate": 101.2146,
         "fixingRate": 0
     }
