@@ -21,7 +21,7 @@ package_split=(${package//\// })
 package_name=${package_split[-1]}
 echo "Package name: ${package_name}"
 
-platforms=("windows/amd64" "linux/amd64")
+platforms=("windows/amd64" "linux/amd64" "windows/386")
 for platform in "${platforms[@]}"; do
   platform_split=(${platform//\// })
   GOOS=${platform_split[0]}
