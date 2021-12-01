@@ -40,23 +40,23 @@ type CompanyAccount struct {
 	ID                             string   `xml:"ID,attr" json:"-"`
 	RowOrder                       string   `xml:"RowOrder,attr" json:"-"`
 	Account                        string   `xml:"Account" json:"account"`
-	BankCode                       int      `xml:"BankCode" json:"bankCode"`
-	AccountNumber                  int      `xml:"AccountNumber" json:"accountNumber"`
-	ControlNumber                  int      `xml:"ControlNumber" json:"controlNumber"`
+	BankCode                       int64    `xml:"BankCode" json:"bankCode"`
+	AccountNumber                  int64    `xml:"AccountNumber" json:"accountNumber"`
+	ControlNumber                  int64    `xml:"ControlNumber" json:"controlNumber"`
 	CompanyName                    string   `xml:"CompanyName" json:"companyName"`
-	NationalIdentificationNumber   int      `xml:"NationalIdentificationNumber" json:"nationalIdentificationNumber"`
+	NationalIdentificationNumber   int64    `xml:"NationalIdentificationNumber" json:"nationalIdentificationNumber"`
 	TaxIdentificationNumber        string   `xml:"TaxIdentificationNumber" json:"taxIdentificationNumber"`
 	Address                        string   `xml:"Address" json:"address"`
 	City                           string   `xml:"City" json:"city"`
-	MunicipalityCode               int      `xml:"MunicipalityCode" json:"municipalityCode"`
-	ActivityCode                   int      `xml:"ActivityCode" json:"activityCode"`
+	MunicipalityCode               int64    `xml:"MunicipalityCode" json:"municipalityCode"`
+	ActivityCode                   int64    `xml:"ActivityCode" json:"activityCode"`
 	MunicipalityName               string   `xml:"MunicipalityName" json:"municipalityName"`
 	ActivityName                   string   `xml:"ActivityName" json:"activityName"`
 	BankName                       string   `xml:"BankName" json:"bankName"`
-	CompanyAccountStatusID         int      `xml:"CompanyAccountStatusID" json:"companyAccountStatusID"`
-	CompanyAccountBlockadeStatusID int      `xml:"CompanyAccountBlockadeStatusID" json:"companyAccountBlockadeStatusID"`
-	CompanyAccountTypeID           int      `xml:"CompanyAccountTypeID" json:"companyAccountTypeID"`
-	LegalUserTypeID                int      `xml:"LegalUserTypeID" json:"legalUserTypeID"`
+	CompanyAccountStatusID         int64    `xml:"CompanyAccountStatusID" json:"companyAccountStatusID"`
+	CompanyAccountBlockadeStatusID int64    `xml:"CompanyAccountBlockadeStatusID" json:"companyAccountBlockadeStatusID"`
+	CompanyAccountTypeID           int64    `xml:"CompanyAccountTypeID" json:"companyAccountTypeID"`
+	LegalUserTypeID                int64    `xml:"LegalUserTypeID" json:"legalUserTypeID"`
 	InitializationDate             string   `xml:"InitializationDate" json:"initializationDate"`
 	ChangeDate                     string   `xml:"ChangeDate" json:"changeDate"`
 	UpdateDate                     string   `xml:"UpdateDate" json:"updateDate"`

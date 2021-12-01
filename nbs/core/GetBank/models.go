@@ -37,8 +37,8 @@ type BankDataSetBank struct {
 	BankHistoryID                string `xml:"BankHistoryID" json:"bankHistoryID"`
 	StartDate                    string `xml:"StartDate" json:"startDate"`
 	EndDate                      string `xml:"EndDate" json:"endDate"`
-	BankCode                     int    `xml:"BankCode" json:"bankCode"`
-	NationalIdentificationNumber int    `xml:"NationalIdentificationNumber" json:"nationalIdentificationNumber"`
+	BankCode                     int64  `xml:"BankCode" json:"bankCode"`
+	NationalIdentificationNumber int64  `xml:"NationalIdentificationNumber" json:"nationalIdentificationNumber"`
 	TaxIdentificationNumber      string `xml:"TaxIdentificationNumber" json:"taxIdentificationNumber"`
 	Name                         string `xml:"Name" json:"name"`
 	LogoSmall                    string `xml:"LogoSmall" json:"logoSmall"`
