@@ -1,3 +1,8 @@
+---
+title: gospl  
+has_children: true  
+permalink: "/cmd"  
+---
 ## gospl
 
 NBS web service command line client
