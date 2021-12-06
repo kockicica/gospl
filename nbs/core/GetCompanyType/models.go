@@ -29,9 +29,9 @@ type Types []Type
 
 type Type struct {
 	XMLName       xml.Name `xml:"CompanyType" json:"-"`
-	CompanyTypeID int      `xml:"CompanyTypeID"`
-	Name          string   `xml:"Name"`
-	Description   string   `xml:"Description"`
+	CompanyTypeID int      `xml:"CompanyTypeID" json:"companyTypeID"`
+	Name          string   `xml:"Name" json:"name"`
+	Description   string   `xml:"Description" json:"description"`
 }
 
 func (t Types) WriteOut() {

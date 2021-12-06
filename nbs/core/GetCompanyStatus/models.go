@@ -29,9 +29,9 @@ type Statuses []CompanyStatus
 
 type CompanyStatus struct {
 	XMLName         xml.Name `xml:"CompanyStatus" json:"-"`
-	CompanyStatusID int      `xml:"CompanyStatusID"`
-	Name            string   `xml:"Name"`
-	Description     string   `xml:"Description"`
+	CompanyStatusID int      `xml:"CompanyStatusID" json:"companyStatusID"`
+	Name            string   `xml:"Name" json:"name"`
+	Description     string   `xml:"Description" json:"description"`
 }
 
 func (s Statuses) WriteOut() {
