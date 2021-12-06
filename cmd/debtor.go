@@ -17,6 +17,7 @@ package cmd
 
 import (
 	"gospl/nbs/debtor/GetDebtor"
+	"gospl/nbs/debtor/GetEnforcedCollectionDebtorBlockadeStatus"
 
 	"github.com/spf13/cobra"
 )
@@ -76,8 +77,25 @@ var debtorCmd = &cobra.Command{
 	},
 }
 
+var debtorStatusCmd = &cobra.Command{
+	Use:     "status",
+	Aliases: []string{"s"},
+	Short:   "Get debtor account status",
+	RunE: func(cmd *cobra.Command, args []string) error {
+
+		request := &GetEnforcedCollectionDebtorBlockadeStatus.Request{}
+		data, err := client.GetEnforcedCollectionDebtorBlockadeStatus(request)
+		if err != nil {
+			return err
+		}
+		currentData = data
+		return nil
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(debtorCmd)
+	debtorCmd.AddCommand(debtorStatusCmd)
 
 	debtorCmd.Flags().StringP("id", "i", "", "Debtor ID")
 	debtorCmd.Flags().IntP("bank-code", "b", 0, "Bank code")
