@@ -21,6 +21,8 @@ import (
 	"gospl/nbs/core/GetBank"
 	"gospl/nbs/core/GetBankStatus"
 	"gospl/nbs/core/GetBankType"
+	"gospl/nbs/core/GetCompanyStatus"
+	"gospl/nbs/core/GetCompanyType"
 	"gospl/nbs/core/GetCurrency"
 
 	"github.com/spf13/cobra"
@@ -135,12 +137,52 @@ var coreCurrencyCmd = &cobra.Command{
 	},
 }
 
+var coreCompanyStatusCmd = &cobra.Command{
+	Use:                   "status",
+	Aliases:               []string{"s"},
+	Short:                 "Get company status",
+	DisableFlagsInUseLine: true,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		request := &GetCompanyStatus.Request{
+			CompanyStatusID: 0,
+		}
+
+		data, err := client.GetCompanyStatus(request)
+		if err != nil {
+			return err
+		}
+		currentData = data
+		return nil
+	},
+}
+
+var coreCompanyTypeCmd = &cobra.Command{
+	Use:                   "type",
+	Aliases:               []string{"t"},
+	Short:                 "Get company type",
+	DisableFlagsInUseLine: true,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		request := &GetCompanyType.Request{
+			CompanyTypeID: 0,
+		}
+
+		data, err := client.GetCompanyType(request)
+		if err != nil {
+			return err
+		}
+		currentData = data
+		return nil
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(coreCmd)
 	coreCmd.AddCommand(coreBankCmd)
 	coreBankCmd.AddCommand(coreBankStatusCmd)
 	coreBankCmd.AddCommand(coreBankTypeCmd)
 	coreCmd.AddCommand(coreCurrencyCmd)
+	coreCmd.AddCommand(coreCompanyStatusCmd)
+	coreCmd.AddCommand(coreCompanyTypeCmd)
 
 	coreBankCmd.Flags().StringP("id", "i", "", "Bank ID")
 	coreBankCmd.Flags().IntP("bank-code", "c", 0, "Bank code")

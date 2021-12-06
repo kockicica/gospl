@@ -4,6 +4,8 @@ import (
 	"gospl/nbs/core/GetBank"
 	"gospl/nbs/core/GetBankStatus"
 	"gospl/nbs/core/GetBankType"
+	"gospl/nbs/core/GetCompanyStatus"
+	"gospl/nbs/core/GetCompanyType"
 	"gospl/nbs/core/GetCurrency"
 )
 
@@ -37,4 +39,20 @@ func (c *Client) GetCurrency(request *GetCurrency.Request) (GetCurrency.Currenci
 		return nil, err
 	}
 	return response.Result.Content.Data.Currencies, nil
+}
+
+func (c *Client) GetCompanyStatus(request *GetCompanyStatus.Request) (GetCompanyStatus.Statuses, error) {
+	response := GetCompanyStatus.Response{}
+	if err := c.handle("CommunicationOfficeService1_0/CoreService.asmx", "GetCompanyStatus", request, &response); err != nil {
+		return nil, err
+	}
+	return response.Result.Content.Data.Statuses, nil
+}
+
+func (c *Client) GetCompanyType(request *GetCompanyType.Request) (GetCompanyType.Types, error) {
+	response := GetCompanyType.Response{}
+	if err := c.handle("CommunicationOfficeService1_0/CoreService.asmx", "GetCompanyType", request, &response); err != nil {
+		return nil, err
+	}
+	return response.Result.Content.Data.Types, nil
 }
