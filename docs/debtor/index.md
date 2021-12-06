@@ -1,6 +1,7 @@
 ---
 title: debtor  
 parent: gospl  
+has_children: true  
 permalink: "/cmd/debtor"
 ---
 
