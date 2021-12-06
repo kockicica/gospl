@@ -1,6 +1,7 @@
 ---
 title: status  
 parent: debtor  
+grandparent: gospl  
 permalink: "/cmd/debtor/status"
 ---
 
